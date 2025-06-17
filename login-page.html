@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+    body {
+      margin: 0;
+      background: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-container {
+      background: #fff;
+      padding: 35px 30px;
+      border-radius: 16px;
+      border: 2px solid orange;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 0.7s ease-out;
+      transition: all 0.3s ease;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+    .shake {
+      animation: shake 0.4s ease;
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #222;
+      font-size: 24px;
+    }
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 15px;
+      color: #333;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 13px 45px 13px 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+    .form-group input:focus {
+      border-color: #0099ff;
+      box-shadow: 0 0 5px rgba(0, 153, 255, 0.3);
+    }
+    .form-group .material-icons {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .form-group .material-icons:hover {
+      color: #000;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+      display: none;
+      margin-top: 5px;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(45deg, #ff9800, #e65100);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .login-btn:hover {
+      filter: brightness(1.1);
+    }
+    .social-buttons {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .google-btn { background: #db4437; }
+    .google-btn:hover { background: #c23321; }
+    .facebook-btn { background: #4267B2; }
+    .facebook-btn:hover { background: #334c99; }
+    .phone-btn { background: #28a745; }
+    .phone-btn:hover { background: #1e7a34; }
+    .extra-links {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .extra-links a {
+      color: #ff6f00;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: 0.3s;
+    }
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>تسجيل الدخول</h2>
+    <div class="form-group">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" placeholder="example@email.com">
+      <span class="error" id="emailError">يرجى إدخال البريد الإلكتروني</span>
+    </div>
+    <div class="form-group">
+      <label for="password">كلمة المرور</label>
+      <input type="password" id="password" placeholder="********">
+      <span class="material-icons" onclick="togglePassword()">visibility</span>
+      <span class="error" id="passwordError">يرجى إدخال كلمة المرور</span>
+    </div>
+    <button class="login-btn" onclick="login()">تسجيل الدخول</button>
+    <div class="social-buttons">
+      <button class="social-btn google-btn" onclick="alert('تسجيل الدخول بجوجل')">
+        <span class="material-icons">account_circle</span> Google
+      </button>
+      <button class="social-btn facebook-btn" onclick="alert('تسجيل الدخول بفيسبوك')">
+        <span class="material-icons">facebook</span> Facebook
+      </button>
+      <button class="social-btn phone-btn" onclick="alert('تسجيل برقم الهاتف')">
+        <span class="material-icons">phone</span> رقم الهاتف
+      </button>
+    </div>
+    <div class="extra-links">
+      <a href="#">نسيت كلمة المرور؟</a>
+      <a href="#">إنشاء حساب جديد</a>
+    </div>
+  </div>
+  <script>
+    function togglePassword() {
+      const passInput = document.getElementById('password');
+      const icon = document.querySelector('.form-group .material-icons');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+    function login() {
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const form = document.querySelector('.login-container');
+      let hasError = false;
+      if (email.value.trim() === '') {
+        emailError.style.display = 'block';
+        hasError = true;
+      } else {
+        emailError.style.display = 'none';
+      }
+      if (password.value.trim() === '') {
+        passwordError.style.display = 'block';
+        hasError = true;
+      } else {
+        passwordError.style.display = 'none';
+      }
+      if (hasError) {
+        form.classList.remove('shake');
+        void form.offsetWidth;
+        form.classList.add('shake');
+        return;
+      }
+      form.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px; background: #fff; border-radius: 16px; border: 2px solid orange;">
+          <span class="material-icons" style="font-size: 48px; color: green;">check_circle</span>
+          <h3 style="margin-top: 20px; color: #333;">تم تسجيل الدخول بنجاح</h3>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
